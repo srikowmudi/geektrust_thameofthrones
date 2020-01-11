@@ -1,4 +1,4 @@
-package com.example.southeros;
+package com.example.universe;
 
 public interface IWarProtocol {
     String decryptMessage(String message);

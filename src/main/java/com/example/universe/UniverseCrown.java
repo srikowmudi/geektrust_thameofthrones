@@ -1,14 +1,14 @@
-package com.example.southeros;
+package com.example.universe;
 
 import java.util.List;
 
-public class SoutherosCrown {
-    Southeros southeros;
+public class UniverseCrown {
+    Universe universe;
     Kingdom toBeRuler;
     WarProtocol warProtocol;
 
-    public SoutherosCrown(Kingdom toBeRuler) {
-        this.southeros = Southeros.getInstance();
+    public UniverseCrown(Kingdom toBeRuler) {
+        this.universe = Universe.getInstance();
         this.toBeRuler = toBeRuler;
     }
 
@@ -16,7 +16,7 @@ public class SoutherosCrown {
         try {
             for (String msg : messages) {
                 String[] msgInput = msg.split(" ", 2);
-                warProtocol = new WarProtocol(toBeRuler, southeros.getKingdom(msgInput[0]));
+                warProtocol = new WarProtocol(toBeRuler, universe.getKingdom(msgInput[0]));
                 warProtocol.execute(msgInput[1]);
             }
         }

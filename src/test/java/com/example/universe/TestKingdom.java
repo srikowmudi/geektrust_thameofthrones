@@ -1,4 +1,4 @@
-package com.example.southeros;
+package com.example.universe;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.*;

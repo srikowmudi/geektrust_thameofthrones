@@ -1,4 +1,4 @@
-package com.example.southeros;
+package com.example.universe;
 
 import java.util.Set;
 

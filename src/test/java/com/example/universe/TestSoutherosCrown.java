@@ -1,4 +1,4 @@
-package com.example.southeros;
+package com.example.universe;
 
 import com.example.util.FileUtil;
 import org.junit.jupiter.api.Assertions;
@@ -10,7 +10,7 @@ import java.util.List;
 
 public class TestSoutherosCrown {
     @Spy
-    Southeros southeros;
+    Universe southeros;
 
     FileUtil fileUtil = new FileUtil();
 
@@ -18,7 +18,7 @@ public class TestSoutherosCrown {
     static String[] Kingdoms_emblems = {"gorilla","panda","octopus","mammoth","owl","dragon"};
 
     private void initSoutheros() {
-        southeros = Southeros.getInstance();
+        southeros = Universe.getInstance();
 
         for(int i = 0; i < Kingdoms.length; i++)
             southeros.registerKingdom(new Kingdom(Kingdoms[i],Kingdoms_emblems[i]));
@@ -28,7 +28,7 @@ public class TestSoutherosCrown {
     public void startWarTest() throws Exception {
         List<String> messages = fileUtil.readFile("src/test/resources/sample1.txt");
         initSoutheros();
-        SoutherosCrown crown = Mockito.spy(new SoutherosCrown(southeros.getKingdom("space")));
+        UniverseCrown crown = Mockito.spy(new UniverseCrown(southeros.getKingdom("space")));
         crown.startWar(messages);
         int output = crown.isKingTheRuler();
         verify(crown,times(1)).isKingTheRuler();

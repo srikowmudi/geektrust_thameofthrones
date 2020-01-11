@@ -1,4 +1,4 @@
-package com.example.southeros;
+package com.example.universe;
 
 import org.junit.jupiter.api.Assertions;
 
@@ -6,12 +6,12 @@ import org.junit.jupiter.api.*;
 
 public class TestSoutheros {
 
-    static Southeros southeros;
+    static Universe southeros;
     static String[] Kingdoms = {"space","land","water","ice","air","fire"};
     static String[] Kingdoms_emblems = {"gorilla","panda","octopus","mammoth","owl","dragon"};
 
     private static void initSoutheros() {
-        southeros = Southeros.getInstance();
+        southeros = Universe.getInstance();
 
         for(int i = 0; i < Kingdoms.length; i++)
             southeros.registerKingdom(new Kingdom(Kingdoms[i],Kingdoms_emblems[i]));
@@ -27,7 +27,7 @@ public class TestSoutheros {
     }
     @Test
     public void getKingdomTest() {
-        Assertions.assertTrue(southeros.southerosKingdoms.containsKey("space") && southeros.southerosKingdoms.get("space") != null);
+        Assertions.assertTrue(southeros.kingdoms.containsKey("space") && southeros.kingdoms.get("space") != null);
     }
 
 

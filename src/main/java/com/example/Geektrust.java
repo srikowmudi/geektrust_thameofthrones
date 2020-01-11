@@ -1,16 +1,16 @@
 package com.example;
 
-import com.example.southeros.Kingdom;
-import com.example.southeros.Southeros;
-import com.example.southeros.SoutherosCrown;
+import com.example.universe.Kingdom;
+import com.example.universe.Universe;
+import com.example.universe.UniverseCrown;
 import com.example.util.FileUtil;
 
 import java.util.List;
 
 public class Geektrust
 {
-   Southeros southeros;
-   SoutherosCrown goldenCrown;
+   Universe universeSoutheros;
+   UniverseCrown goldenCrown;
 
    static String[] Kingdoms = {"space","land","water","ice","air","fire"};
    static String[] Kingdoms_emblems = {"gorilla","panda","octopus","mammoth","owl","dragon"};
@@ -20,7 +20,7 @@ public class Geektrust
 
         Geektrust _geektrust = new Geektrust();
         _geektrust.initSoutheros();
-        _geektrust.goldenCrown = new SoutherosCrown(_geektrust.southeros.getKingdom(kingToBeRuler));
+        _geektrust.goldenCrown = new UniverseCrown(_geektrust.universeSoutheros.getKingdom(kingToBeRuler));
 
         String _filePath = args[0];
         List<String> messages = new FileUtil().readFile(_filePath);
@@ -33,7 +33,7 @@ public class Geektrust
     private void printOutput(int isKingTheRuler) {
         if(isKingTheRuler == 1) {
             System.out.print(kingToBeRuler.toUpperCase() + " ");
-            southeros.getKingdom(kingToBeRuler).getSupportedKingdoms().stream().forEach(k -> System.out.print(k.toUpperCase() + " "));
+            universeSoutheros.getKingdom(kingToBeRuler).getSupportedKingdoms().stream().forEach(k -> System.out.print(k.toUpperCase() + " "));
             System.out.println();
         }
         else
@@ -41,9 +41,10 @@ public class Geektrust
     }
 
     private void initSoutheros() {
-        southeros = Southeros.getInstance();
+        Universe.name = "Southeros";
+        universeSoutheros = Universe.getInstance();
 
         for(int i = 0; i < Kingdoms.length; i++)
-            southeros.registerKingdom(new Kingdom(Kingdoms[i],Kingdoms_emblems[i]));
+            universeSoutheros.registerKingdom(new Kingdom(Kingdoms[i],Kingdoms_emblems[i]));
     }
 }
