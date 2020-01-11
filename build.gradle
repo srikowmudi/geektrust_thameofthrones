@@ -1,0 +1,51 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.example'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+jar {
+    archiveBaseName = 'geektrust' //Please do not change this final artifact name
+    archiveVersion = null   //Please do not change this final artifact version
+    version = null   //Please do not change this final artifact version
+
+    manifest {
+        attributes 'Main-Class' : 'com.example.Geektrust' //Change this to the main class of your program which will be executed
+    }
+    // To create a single jar with all dependencies.
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    } {
+        exclude "META-INF/*.SF"
+        exclude "META-INF/*.DSA"
+        exclude "META-INF/*.RSA"
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+//Add your dependencies here
+dependencies {
+    testImplementation('org.junit.jupiter:junit-jupiter:5.4.2')
+
+    testCompile group: 'org.mockito', name: 'mockito-junit-jupiter', version: '2.17.0'
+
+    // https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy
+    compile group: 'net.bytebuddy', name: 'byte-buddy', version: '1.10.5'
+    // https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy-agent
+    testCompile group: 'net.bytebuddy', name: 'byte-buddy-agent', version: '1.10.5'
+    // https://mvnrepository.com/artifact/org.objenesis/objenesis
+    testCompile group: 'org.objenesis', name: 'objenesis', version: '2.6'
+
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
