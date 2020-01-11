@@ -9,42 +9,43 @@ import java.util.List;
 
 public class Geektrust
 {
-   Universe universeSoutheros;
-   UniverseCrown goldenCrown;
+    Universe universe;
+    UniverseCrown crown;
 
-   static String[] Kingdoms = {"space","land","water","ice","air","fire"};
-   static String[] Kingdoms_emblems = {"gorilla","panda","octopus","mammoth","owl","dragon"};
-   static String kingToBeRuler = "space";
+    static String universeName = "Southeros";
+    static String[] Kingdoms = {"space","land","water","ice","air","fire"};
+    static String[] Kingdoms_emblems = {"gorilla","panda","octopus","mammoth","owl","dragon"};
+    static String kingToBeRuler = "space";
 
     public static void main(String args[]) throws Exception {
 
         Geektrust _geektrust = new Geektrust();
-        _geektrust.initSoutheros();
-        _geektrust.goldenCrown = new UniverseCrown(_geektrust.universeSoutheros.getKingdom(kingToBeRuler));
+        _geektrust.initUniverse(universeName);
+        _geektrust.crown = new UniverseCrown(_geektrust.universe.getKingdom(kingToBeRuler));
 
         String _filePath = args[0];
         List<String> messages = new FileUtil().readFile(_filePath);
 
-        _geektrust.goldenCrown.startWar(messages);
+        _geektrust.crown.startWar(messages);
 
-        _geektrust.printOutput(_geektrust.goldenCrown.isKingTheRuler());
+        _geektrust.printOutput(_geektrust.crown.isKingTheRuler());
     }
 
     private void printOutput(int isKingTheRuler) {
         if(isKingTheRuler == 1) {
             System.out.print(kingToBeRuler.toUpperCase() + " ");
-            universeSoutheros.getKingdom(kingToBeRuler).getSupportedKingdoms().stream().forEach(k -> System.out.print(k.toUpperCase() + " "));
+            universe.getKingdom(kingToBeRuler).getSupportedKingdoms().stream().forEach(k -> System.out.print(k.toUpperCase() + " "));
             System.out.println();
         }
         else
             System.out.println("NONE");
     }
 
-    private void initSoutheros() {
-        Universe.name = "Southeros";
-        universeSoutheros = Universe.getInstance();
+    private void initUniverse(String universeName) {
+        Universe.name = universeName;
+        universe = Universe.getInstance();
 
         for(int i = 0; i < Kingdoms.length; i++)
-            universeSoutheros.registerKingdom(new Kingdom(Kingdoms[i],Kingdoms_emblems[i]));
+            universe.registerKingdom(new Kingdom(Kingdoms[i],Kingdoms_emblems[i]));
     }
 }
