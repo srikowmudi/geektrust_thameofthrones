@@ -4,8 +4,7 @@ import com.example.util.HashUtil;
 import com.example.util.MessageUtil;
 
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.LinkedHashSet;
 
 public class WarProtocol implements IWarProtocol {
     Kingdom warInitiator;
@@ -61,9 +60,9 @@ public class WarProtocol implements IWarProtocol {
     public void recordVictoryStatus(int victory) {
         try {
             if (victory == 1) {
-                Set<String> kingdoms = warInitiator.getSupportedKingdoms();
+                LinkedHashSet<String> kingdoms = warInitiator.getSupportedKingdoms();
                 if (kingdoms == null)
-                    kingdoms = new HashSet<>();
+                    kingdoms = new LinkedHashSet<>();
                 kingdoms.add(warFighter.getName());
                 warInitiator.setSupportedKingdoms(kingdoms);
             }

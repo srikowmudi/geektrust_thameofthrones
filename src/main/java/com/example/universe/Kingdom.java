@@ -1,12 +1,12 @@
 package com.example.universe;
 
-import java.util.Set;
+import java.util.LinkedHashSet;
 
 public class Kingdom {
 
     private String name;
     private String emblem;
-    private Set<String> supportedKingdoms;
+    private LinkedHashSet<String> supportedKingdoms;
 
 
     public Kingdom(String kingdomName, String emblem) {
@@ -22,11 +22,11 @@ public class Kingdom {
         return emblem;
     }
 
-    public Set<String> getSupportedKingdoms() {
+    public LinkedHashSet<String> getSupportedKingdoms() {
         return supportedKingdoms;
     }
 
-    public void setSupportedKingdoms(Set<String> supportedKingdoms) {
+    public void setSupportedKingdoms(LinkedHashSet<String> supportedKingdoms) {
         this.supportedKingdoms = supportedKingdoms;
     }
 }
